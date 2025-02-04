@@ -1,8 +1,8 @@
 import React from "react"
 
+import Center from "../Center"
 import Header from "../Header"
 import Sidebar from "../Sidebar"
-import Center from "../Center"
 
 const MainLayout = () => {
     return (
