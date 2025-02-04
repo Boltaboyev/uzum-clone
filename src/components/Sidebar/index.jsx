@@ -1,6 +1,6 @@
-import React from "react"
+import React, {useRef, useState} from "react"
 
-const Sidebar = () => {
+const Sidebar = ({valueRange, handleChange}) => {
     return (
         <div className="flex-[1.4] flex flex-col gap-[15px] pr-[20px] sticky top-0 left-0 h-[100vh]">
             <h1 className="font-medium text-[18px] opacity-80">Категории</h1>
@@ -42,14 +42,17 @@ const Sidebar = () => {
                 </div>
 
                 <div className="border border-[rgba(54,54,64,0.2)] p-[5px_10px] rounded-md">
-                    <p className="opacity-60">до 450000</p>
+                    <p className="opacity-60">до {valueRange}</p>
                 </div>
             </div>
 
             <input
+                onChange={(e) => handleChange(e)}
                 id="price-range"
                 type="range"
-                defaultValue="0"
+                value={valueRange}
+                min={100000}
+                max={7000000}
                 className="w-full h-[3px] bg-[#7000ff] rounded-lg appearance-none cursor-pointer"
                 aria-label="Price range slider"
             />
@@ -76,8 +79,6 @@ const Sidebar = () => {
                         Фиолетовый
                     </p>
                 </div>
-
-
             </div>
         </div>
     )

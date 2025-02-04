@@ -6,8 +6,16 @@ import {CiHeart} from "react-icons/ci"
 import {IoStar} from "react-icons/io5"
 import {TbShoppingBagPlus} from "react-icons/tb"
 
-const Card = () => {
+const Card = ({valueRange}) => {
     const [products, setProducts] = useState([])
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        let filteredData = products.filter((value) => {
+            return parseInt(value.price) >= +valueRange
+        })
+        setData(filteredData)
+    }, [valueRange, products])
 
     useEffect(() => {
         axios
@@ -17,7 +25,7 @@ const Card = () => {
 
     return (
         <div className="grid grid-cols-3 gap-[25px]">
-            {products.map((product) => (
+            {(valueRange ? data : products).map((product) => (
                 <div
                     key={product.id}
                     className="rounded-lg relative border border-[#7e818c1e]  flex flex-col justify-between overflow-hidden p-[5px]">
@@ -59,7 +67,8 @@ const Card = () => {
                                 <p className="text-lg font-medium">
                                     {product.price
                                         .toLocaleString("")
-                                        .replace(/,/g, " ")}
+                                        .replace(/,/g, " ")}{" "}
+                                    UZS
                                 </p>
                             </div>
                             <div className="p-2 border border-[#7e818c] rounded-full cursor-pointer hover:bg-gray-300">

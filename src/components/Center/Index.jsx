@@ -1,7 +1,7 @@
 import React from "react"
 import Card from "../Card"
 
-const Center = () => {
+const Center = ({valueRange}) => {
     return (
         <div className="flex-[5] ">
             <h1 className="text-[20px] font-bold">Успейте купить!</h1>
@@ -32,7 +32,7 @@ const Center = () => {
                 </p>
             </div>
 
-            <Card />
+            <Card valueRange={valueRange} />
         </div>
     )
 }
